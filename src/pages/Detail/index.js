@@ -57,11 +57,7 @@ export default function Detail() {
                     Valor:
                 </Text>
                 <Text style={styles.incidentValue}>
-                    {Intl.NumberFormat('pt-BR',
-                    {
-                        style: 'currency',
-                        currency: 'BRL'
-                    }).format(incident.value)}
+                    {incident.value}
                 </Text>
             </View>
             <View style={styles.contactBox}>

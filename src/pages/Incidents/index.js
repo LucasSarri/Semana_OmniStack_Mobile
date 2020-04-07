@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
 import { View, FlatList ,Text, Image, TouchableOpacity } from 'react-native';
 import api from '../../services/api';
 import logoImg from '../../assets/logo.png';
@@ -12,12 +12,15 @@ export default function Incidents() {
     const [page,setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
+    /*const route = useRoute();
+    const incident = route.params.incident;*/
 
     function navigateToDetail(incident){
         navigation.navigate('Detail',{incident});
     }
 
     async function loadIncidents(){
+        console.log('Entrou em loading')
         if(loading)
         {
             return;
@@ -28,7 +31,8 @@ export default function Incidents() {
         }
         setLoading(true);
         const res = await api.get(`incidents?page=${page}`);
-        setIncidents([... incidents, ... res.data]);
+        console.log('Res:',res.data,' Incidents: ',incidents);
+        setIncidents([incidents,res.data]);
         setTotal(res.headers['x-total-count']);
         setPage(page + 1);
         setLoading(false);
@@ -80,7 +84,7 @@ export default function Incidents() {
                         Valor:
                     </Text>
                     <Text style={styles.incidentValue}>
-                        {Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(incident.value)}
+                        R$ {incident.value}
                     </Text>
                     <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}> 
                         <Text style={styles.detailsButtonText}>
