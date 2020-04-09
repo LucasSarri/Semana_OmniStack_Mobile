@@ -8,34 +8,15 @@ import styles from './styles';
 
 export default function Incidents() {
     const [incidents, setIncidents] = useState([]);
-    const [total, setTotal] = useState(0);
-    const [page,setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
     const navigation = useNavigation();
-    /*const route = useRoute();
-    const incident = route.params.incident;*/
 
     function navigateToDetail(incident){
         navigation.navigate('Detail',{incident});
     }
 
     async function loadIncidents(){
-        console.log('Entrou em loading')
-        if(loading)
-        {
-            return;
-        }
-        if(total > 0 && incidents.length == total)
-        {
-            return;
-        }
-        setLoading(true);
-        const res = await api.get(`incidents?page=${page}`);
-        console.log('Res:',res.data,' Incidents: ',incidents);
-        setIncidents([incidents,res.data]);
-        setTotal(res.headers['x-total-count']);
-        setPage(page + 1);
-        setLoading(false);
+        const res = await api.get(`incidents?`);
+        setIncidents(incidents.push(res.data));
     }
 
     useEffect(() => {
@@ -46,9 +27,6 @@ export default function Incidents() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image source={logoImg} />
-                <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}> {total} Casos</Text>
-                </Text>
             </View>
             <Text style={styles.title}>
                 Bem-Vindo(a)
@@ -62,8 +40,6 @@ export default function Incidents() {
                 style={styles.incidentList}
                 keyExtractor={incident => incident.id}
                 showsVerticalScrollIndicator={false}
-                onEndReached={loadIncidents}
-                onEndReachedThreshold={0.2}
                 renderItem={({item: incident}) => (
                 <View style={styles.incident}>
                     <Text style={styles.incidentProperty}>
