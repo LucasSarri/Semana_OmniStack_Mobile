@@ -15,8 +15,9 @@ export default function Incidents() {
     }
 
     async function loadIncidents(){
-        const res = await api.get(`incidents?`);
-        setIncidents(incidents.push(res.data));
+        const res = await api.get(`incidents`);
+        incidents.push(res.data)
+        setIncidents(incidents);
     }
 
     useEffect(() => {
@@ -38,7 +39,7 @@ export default function Incidents() {
             <FlatList 
                 data={incidents}
                 style={styles.incidentList}
-                keyExtractor={incident => incident.id}
+                keyExtractor={incident => incidents.id}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item: incident}) => (
                 <View style={styles.incident}>
