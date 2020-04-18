@@ -39,29 +39,29 @@ export default function Incidents() {
             <FlatList 
                 data={incidents}
                 style={styles.incidentList}
-                keyExtractor={incident => incidents.id}
+                keyExtractor={item => item.id}
                 showsVerticalScrollIndicator={false}
-                renderItem={({item: incident}) => (
+                renderItem={({item: item}) => (
                 <View style={styles.incident}>
                     <Text style={styles.incidentProperty}>
                         Ong:
                     </Text>
                     <Text style={styles.incidentValue}>
-                        {incident.name}
+                        {item.name}
                     </Text>
 
                     <Text style={styles.incidentProperty}>
                         Caso:
                     </Text>
                     <Text style={styles.incidentValue}>
-                        {incident.title}
+                        {item.title}
                     </Text>
 
                     <Text style={styles.incidentProperty}>
                         Valor:
                     </Text>
                     <Text style={styles.incidentValue}>
-                        R$ {incident.value}
+                        R$ {item.value}
                     </Text>
                     <TouchableOpacity style={styles.detailsButton} onPress={navigateToDetail}> 
                         <Text style={styles.detailsButtonText}>
