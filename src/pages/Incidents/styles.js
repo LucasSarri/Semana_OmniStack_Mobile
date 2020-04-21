@@ -2,63 +2,74 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
-    container:{
-        flex:1,
+    container: {
+        flex: 1,
         paddingHorizontal: 24,
-        paddingTop: Constants.statusBarHeight +20
+        paddingTop: Constants.statusBarHeight + 20,
     },
+
     header:{
-        flexDirection: 'row', //Serve para apresentar o conteúdo um abaixo do outro
+        flexDirection: 'row',
         justifyContent: 'space-between',
-        alignContent: 'center'
+        alignItems: 'center',        
     },
-    headerText:{
+
+    headerText: {
         fontSize: 15,
-        color: '#737380'
+        color: '#737380',
     },
-    headerTextBold:{
-        fontWeight: 'bold'
+
+    headerTextBold: {
+        fontWeight: 'bold',
     },
-    title:{
+
+    title: {
         fontSize: 30,
         marginBottom: 16,
-        marginTop: 48,
+        marginTop: 28,
         color: '#13131a',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
-    description:{
+
+    description: {
         fontSize: 16,
         lineHeight: 24,
-        color: '#737380'
+        color: '#737380',
     },
-    incidentList:{
-        marginTop:32,
+
+    incidentList: {
+        marginTop: 32,
     },
+
     incident:{
         padding: 24,
         borderRadius: 8,
         backgroundColor: '#FFF',
-        marginBottom: 16
+        marginBottom: 16,
     },
-    incidentProperty:{
+
+    incidentProperty: {
         fontSize: 14,
         color: '#41414d',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
+
     incidentValue: {
         marginTop: 8,
         fontSize: 15,
         marginBottom: 24,
-        color: '#737380'
+        color: '#737380',
     },
-    detailsButton:{
+
+    detailsButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    detailsButtonText:{
-        color: '#E02041',
+
+    detailsButtonText: {
+        color: '#e02041',
         fontSize: 15,
-        fontWeight: 'bold'
-    }
+        fontWeight: 'bold',
+    },
 });
